@@ -1,0 +1,184 @@
+<div style="background-color: white;" class="card">
+    <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="make">Make:</label>
+                <ng-select [items]="makes" bindLabel="title" bindValue="id" [(ngModel)]="selectedMake"
+                    (change)="onMakeChange()" placeholder="Select Make">
+                </ng-select>
+            </div>
+            <div class="form-group col-md-6"> <label for="model">Model:</label>
+                <ng-select [items]="models" bindLabel="title" bindValue="id" [(ngModel)]="selectedModel"
+                    (change)="onModelChange()" placeholder="Select Model">
+                </ng-select>
+            </div>
+            <div class="form-group col-md-6"> <label for="year">Year:</label>
+                <ng-select [items]="years" bindLabel="title" bindValue="id" [(ngModel)]="selectedYear"
+                    (change)="onYearChange()" placeholder="Select Year">
+                </ng-select>
+            </div>
+        </div>
+        <br>
+        <div class="col-12">
+            <div>
+                <div class="p-3">
+                    <h4 class="card-title mb-0">Select Variants</h4>
+                </div>
+                <div class="card-body border-top">
+                    <nav ngbNav #nav2="ngbNav" class="nav-tabs">
+                        <ng-container ngbNavItem *ngFor="let tab of categoryList; let i = index">
+                            <button ngbNavLink>{{tab.title}}</button>
+                            <ng-template ngbNavContent>
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr class="trcat" style="cursor: pointer;"
+                                            *ngFor="let tabs of tab.list; let j = index">
+                                            <td (click)="show(tabs.id)">{{tabs.specs}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ng-template>
+                        </ng-container>
+                    </nav>
+
+                    <div [ngbNavOutlet]="nav2" class="mt-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row"> Body Type</th>
+                        <th scope="row"> Engine size</th>
+                    </tr>
+                    <tr>
+                        <td>{{type}}</td>
+                        <td>{{Engine}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Fuel efficiency</th>
+                        <th scope="row">Transmission</th>
+                    </tr>
+                    <tr>
+                        <td>{{efficiency}}</td>
+                        <td>{{Transmission}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button (click)="toggleDiv()" class="btn btn-link" data-toggle="collapse"
+                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Features List
+                        </button>
+                    </h5>
+                </div>
+
+                <div *ngIf="showDiv" id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                    data-parent="#accordion">
+                    <div class="card-body">
+                        <ul>
+                            <li *ngFor="let tab of featureList; let i = index">{{tab}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button (click)="toggleDivs()" class="btn btn-link" data-toggle="collapse"
+                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Tech Specs
+                        </button>
+                    </h5>
+                </div>
+
+                <div *ngIf="showDivs" id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                    data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item" *ngFor="let tab of techSpecs_list; let i = index">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button (click)="toggleAccordion(i)" class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        {{tab.header}}
+                                    </button>
+                                </h2>
+                                <div [id]="'collapse' + i" class="accordion-collapse collapse " [class.show]="accordionStates[i]"
+                                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div *ngFor="let ta of tab.detail; let j = index">
+                                            <span style="font-weight: bold;">{{ta.key}}</span>
+                                            <span style="padding-left: 15px;">{{ta.value}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <form (ngSubmit)="onSubmit()" #fileForm="ngForm">
+            <div class="form-group col-md-6">
+                <label for="formFileMultiple" class="form-label">Upload Images</label>
+                <input class="form-control" type="file" accept="image/*" (change)="onFileSelected($event)"
+                    id="formFileMultiple" multiple>
+            </div>
+        </form>
+
+        <br>
+
+        <span *ngFor="let file of selectedFiles">
+            <span class="image-container">
+                <img class="img-thumbnail" style="width: 100px;height: 99px;margin-top: 5px;" [src]="getSafeURL(file)"
+                    alt="Selected Image" />
+                <button class="cancel-button" (click)="removeFile(file)">x</button>
+            </span>
+        </span>
+
+        <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select id="inputState" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Check me out
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+</div>
