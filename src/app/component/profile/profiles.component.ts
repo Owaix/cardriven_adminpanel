@@ -5,17 +5,21 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ngbd-alert',
-  templateUrl: './profiles.component.html'
+  templateUrl: './profiles.component.html',
+  styleUrls: ['./profiles.component.scss']
 })
 
 export class ProfilesComponent implements OnInit {
 
   fileBase64: string = '';  // Variable to store the Base64 string
   img: string = '';
+  selectedstate: string = '';
+  statesList: any[] = [];
   user: User = new User();
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.statesList = this.userService.get_states();
     this.userService.get_profile().subscribe(
       response => {
         let user = response.userData[0];
@@ -25,6 +29,7 @@ export class ProfilesComponent implements OnInit {
         this.user.address = user.address;
         this.user.name = user.name;
         this.img = user.profile_img;
+        this.user.state = user.state;
       },
       error => {
         alert(error.error.message);
@@ -38,10 +43,14 @@ export class ProfilesComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.fileBase64 = e.target.result;
+        this.fileBase64 = e.target.result;        
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  onStateChange() {
+    console.log(this.selectedstate)
   }
 
   onSave(): void {
@@ -57,7 +66,7 @@ export class ProfilesComponent implements OnInit {
     } else {
       this.user.isImage = true
     }
-
+    console.log(this.user);
     this.userService.update_profile(this.user).subscribe(
       response => {
         alert(response.message)

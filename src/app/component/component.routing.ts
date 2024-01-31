@@ -10,6 +10,7 @@ import { CardsComponent } from './card/card.component';
 import { TableComponent } from './table/table.component';
 import { ProfilesComponent } from './profile/profiles.component';
 import { CarComponent } from './car/car.component';
+import { ListComponent } from './list/list.component';
 
 
 export const ComponentsRoutes: Routes = [
@@ -23,6 +24,10 @@ export const ComponentsRoutes: Routes = [
 			{
 				path: 'card',
 				component: CardsComponent
+			},
+			{
+				path: 'list',
+				component: ListComponent
 			},
 			{
 				path: 'pagination',

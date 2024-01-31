@@ -14,6 +14,39 @@ export interface TableRows {
     uname: string,
 }
 
+export class CarsModel {
+    id: number = 0;
+    make: string = "";
+    make_id: number = 0;
+    model: string = "";
+    model_id: number = 0;
+    category: string = "";
+    category_id: number | null = null;
+    variant: string | null = null;
+    variant_id: number = 0;
+    year: number = 0;
+    mileage: number = 0;
+    price: string = "";
+    negotiable: number = 0;
+    old_price: number | null = null;
+    slashamt: string = "";
+    slash_perc: string = "";
+    is_slash: number = 0;
+    status: string = "";
+    years: string = "";
+    location: string = "";
+    transmission: string = "";
+    engine_type: string = "";
+    defaultImg: string = "";
+    description: string = "";
+    parked_near: string = "";
+    view_count: number = 0;
+    is_feature: boolean | null = null;
+    createdAt: string = "";
+    created_date: string = "";
+}
+
+
 export const TopSelling: Product[] = [
 
     {
@@ -55,7 +88,7 @@ export const TopSelling: Product[] = [
 
 ]
 
-export const Employee : TableRows[] = [
+export const Employee: TableRows[] = [
     {
         fname: "Mark",
         lname: "Otto",

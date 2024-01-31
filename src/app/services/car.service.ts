@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './env';
-import { CarDetail, Ddl } from './Users';
+import { CarDetail, CarModel, Ddl } from './Users';
+import { CarsModel } from '../component/table/table-data';
 
 @Injectable({
   providedIn: 'root'
@@ -34,15 +35,27 @@ export class CarService {
   }
 
   saveimg(model: any): Observable<any> {
-    const token = this.getToken();  // Replace this with your method of retrieving the token        
+    const token = this.getToken();       
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.post(environment.BASE_URL + 'vehicle/saveimg', model, { headers });
   }
 
   deleteimg(model: any): Observable<any> {
-    const token = this.getToken();  // Replace this with your method of retrieving the token        
+    const token = this.getToken();       
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.post(environment.BASE_URL + 'vehicle/deleteimg', model, { headers });
+  }
+
+  savecar(model: any): Observable<any> {``
+    const token = this.getToken();       
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    return this.http.post(environment.BASE_URL + 'vehicle/sellcar', model, { headers });
+  }
+
+  getcar(id: number): Observable<CarsModel[]> {
+    const token = this.getToken();       
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    return this.http.get<CarsModel[]>(environment.BASE_URL + `vehicle/getcarsbyuserid/${id}`, { headers });
   }
 
   private getToken(): string {

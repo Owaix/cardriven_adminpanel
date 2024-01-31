@@ -9,11 +9,19 @@
     display: inline-block;
     margin-right: 10px;
 }
+ol > li{
+    background-color: white;
+}
 
 img {
     max-width: 100px;
     max-height: 100px;
     margin-bottom: 5px;
+}
+
+.form-control {
+    background-color: #ffffff;
+    border: var(--bs-border-width) solid #000000
 }
 
 .cancel-button {

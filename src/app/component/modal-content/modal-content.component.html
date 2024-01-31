@@ -1,0 +1,60 @@
+<div class="contain">
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <a (click)="toggleDiv()" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                        Features List
+                    </a>
+                </h5>
+            </div>
+
+            <div *ngIf="showDiv" id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                data-parent="#accordion">
+                <div class="card-body">
+                    <ul>
+                        <li *ngFor="let tab of featureList; let i = index">{{tab}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <a (click)="toggleDivs()" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                        Tech Specs
+                    </a>
+                </h5>
+            </div>
+
+            <div *ngIf="showDivs" id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                data-parent="#accordion">
+                <div class="card-body">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item" *ngFor="let tab of techSpecs_list; let i = index">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button (click)="toggleAccordion(i)" class="accordion-button" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    {{tab.header}}
+                                </button>
+                            </h2>
+                            <div [id]="'collapse' + i" class="accordion-collapse collapse "
+                                [class.show]="accordionStates[i]" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div *ngFor="let ta of tab.detail; let j = index">
+                                        <span style="font-weight: bold;">{{ta.key}}</span>
+                                        <span style="padding-left: 15px;">{{ta.value}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

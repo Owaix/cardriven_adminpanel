@@ -7,10 +7,12 @@ import { ComponentsRoutes } from './component.routing';
 import { ProfilesComponent } from './profile/profiles.component';
 import { CarComponent } from './car/car.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ModalContentComponent } from './modal-content/modal-content.component';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
   declarations: [
-    ProfilesComponent, CarComponent
+    ProfilesComponent, CarComponent, ModalContentComponent, ListComponent
   ],
   imports: [
     CommonModule,

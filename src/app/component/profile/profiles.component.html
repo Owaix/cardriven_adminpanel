@@ -30,6 +30,15 @@
         <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" [(ngModel)]="user.address"
           name="address">
       </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputAddress">State</label>
+          <ng-select [items]="statesList" bindLabel="name" style=" border: var(--bs-border-width) solid #000000"
+            name="state" bindValue="abbreviation" (change)="onStateChange()" [(ngModel)]="user.state"
+            placeholder="Select State">
+          </ng-select>
+        </div>
+      </div>
       <br>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>

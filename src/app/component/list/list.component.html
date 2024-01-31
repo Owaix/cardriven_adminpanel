@@ -1,0 +1,47 @@
+<div style="background-color: white;" class="card">
+    <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <h4 class="card-title">Project Listing</h4>
+                <h5 class="card-subtitle text-muted">Overview of the projects</h5>
+                <div class="table-responsive">
+                    <table class="table align-middle text-nowrap">
+                        <thead>
+                            <tr>
+                                <th class="text-dark font-medium fs-4">Team Lead</th>
+                                <th class="text-dark font-medium fs-4">Price</th>
+                                <th class="text-dark font-medium fs-4">Status</th>
+                                <th class="text-dark font-medium fs-4">Weeks</th>
+                                <th class="text-dark font-medium fs-4">Create Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let ts of car'>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img [src]=ts.defaultImg alt="user" width="45" class="rounded-circle">
+                                        <div class="ms-3">
+                                            <h5 class="mb-0 font-medium">{{ts.make}} {{ts.model}}</h5>
+                                            <span class="text-muted">{{ts.years}}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="fs-4">{{ts.price}}</td>
+                                <td>
+                                    <span class="p-2 bg-{{ts.status}} rounded-circle d-inline-block ms-3"></span>
+                                </td>
+
+                                <td>
+                                    <h5 class="mb-0 fw-normal">{{ts.model}}</h5>
+                                </td>
+                                <td>
+                                    <h5 class="mb-0 fw-normal">{{ts.created_date}}</h5>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

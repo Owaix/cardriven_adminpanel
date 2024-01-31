@@ -6,7 +6,7 @@ export class User {
     phone: string = '';
     profilePic: File | null = null;
     address: string = '';
-    address2: string = '';
+    state: string = '';
     image: string = '';
     token: string = '';
     isImage: boolean = true;
@@ -51,4 +51,16 @@ export class techSpecs {
 export class Details {
     key: string = '';
     value: string = '';
+}
+
+export class Car {
+    status: string = '';
+    price: string = '';
+    isNego: boolean = false;
+    makeID: number = 0;
+    modelID: number = 0;
+    variant: string = '';
+    year: number = 0;
+    description: string = '';
+    type: string = '';
 }

@@ -38,6 +38,60 @@ export class UserService {
         });
     }
 
+    get_states() {
+        let territory = [
+            {
+                "name": "Australian capital territory",
+                "abbreviation": "act",
+                "capital": "canberra",
+                "type": "territory"
+            },
+            {
+                "name": "New south wales",
+                "abbreviation": "nsw",
+                "capital": "sydney",
+                "type": "state"
+            },
+            {
+                "name": "Northern territory",
+                "abbreviation": "nt",
+                "capital": "darwin",
+                "type": "territory"
+            },
+            {
+                "name": "Queensland",
+                "abbreviation": "qld",
+                "capital": "brisbane",
+                "type": "state"
+            },
+            {
+                "name": "South australia",
+                "abbreviation": "sa",
+                "capital": "adelaide",
+                "type": "state"
+            },
+            {
+                "name": "Tasmania",
+                "abbreviation": "tas",
+                "capital": "hobart",
+                "type": "state"
+            },
+            {
+                "name": "Victoria",
+                "abbreviation": "vic",
+                "capital": "melbourne",
+                "type": "state"
+            },
+            {
+                "name": "Western australia",
+                "abbreviation": "wa",
+                "capital": "perth",
+                "type": "state"
+            }
+        ]
+        return territory;
+    }
+
     private getToken(): string {
         return localStorage.getItem('authToken') || "";
     }
