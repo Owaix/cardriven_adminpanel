@@ -9,10 +9,11 @@ import { CarComponent } from './car/car.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalContentComponent } from './modal-content/modal-content.component';
 import { ListComponent } from './list/list.component';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   declarations: [
-    ProfilesComponent, CarComponent, ModalContentComponent, ListComponent
+    ProfilesComponent, CarComponent, ModalContentComponent, ListComponent, DetailComponent
   ],
   imports: [
     CommonModule,

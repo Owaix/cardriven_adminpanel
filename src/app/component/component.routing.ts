@@ -11,6 +11,7 @@ import { TableComponent } from './table/table.component';
 import { ProfilesComponent } from './profile/profiles.component';
 import { CarComponent } from './car/car.component';
 import { ListComponent } from './list/list.component';
+import { DetailComponent } from './detail/detail.component';
 
 
 export const ComponentsRoutes: Routes = [
@@ -60,6 +61,10 @@ export const ComponentsRoutes: Routes = [
 			{
 				path: 'car',
 				component: CarComponent
+			},
+			{
+				path: 'detail',
+				component: DetailComponent
 			}
 		]
 	}

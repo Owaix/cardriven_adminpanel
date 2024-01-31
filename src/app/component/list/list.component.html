@@ -16,7 +16,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor='let ts of car'>
+                            <tr [routerLink]="['detail', ts.id]" *ngFor='let ts of car'>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <img [src]=ts.defaultImg alt="user" width="45" class="rounded-circle">
