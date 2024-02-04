@@ -70,6 +70,7 @@ export class ProfilesComponent implements OnInit {
     this.userService.update_profile(this.user).subscribe(
       response => {
         alert(response.message)
+        localStorage.setItem("profile_img", response.profile_img);
         this.router.navigate(['/component/profile']);
       },
       error => {

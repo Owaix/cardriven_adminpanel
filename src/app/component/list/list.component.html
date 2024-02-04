@@ -15,8 +15,8 @@
                                 <th class="text-dark font-medium fs-4">Create Date</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr [routerLink]="['detail', ts.id]" *ngFor='let ts of car'>
+                        <tbody class="listrow" >
+                            <tr (click)="detail(ts.id)" *ngFor='let ts of car'>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <img [src]=ts.defaultImg alt="user" width="45" class="rounded-circle">
@@ -28,7 +28,7 @@
                                 </td>
                                 <td class="fs-4">{{ts.price}}</td>
                                 <td>
-                                    <span class="p-2 bg-{{ts.status}} rounded-circle d-inline-block ms-3"></span>
+                                    <span class="p-2 bg-rounded-circle d-inline-block ms-3">{{ts.status}}</span>
                                 </td>
 
                                 <td>

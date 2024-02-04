@@ -21,7 +21,7 @@
               "ng-apexcharts",
               "apexcharts"
             ],
-            "outputPath": "dist/CarInsider-angular-lite",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -98,7 +98,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/fonts.css"
             ],
             "scripts": []
           }

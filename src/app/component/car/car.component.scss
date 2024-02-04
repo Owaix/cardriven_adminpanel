@@ -9,7 +9,8 @@
     display: inline-block;
     margin-right: 10px;
 }
-ol > li{
+
+ol>li {
     background-color: white;
 }
 
@@ -37,4 +38,11 @@ img {
     border-radius: 5px;
     cursor: pointer;
     font-size: 12px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+button{
+    background-color: #009efb;
 }

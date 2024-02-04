@@ -14,12 +14,28 @@ export class ListComponent implements OnInit {
   car: CarsModel[] = [];
   trow: TableRows[] = [];
 
+  statusList: any[] = [
+    { "id": "s", "name": "Sold", "status": "bg-danger" },
+    { "id": "r", "name": "Reject", "status": "bg-danger" },
+    { "id": "p", "name": "Pending", "status": "bg-danger" },
+    { "id": "a", "name": "Approved", "status": "bg-danger" }
+  ]
+
   constructor(private carDataService: CarService, private router: Router) { }
   ngOnInit(): void {
     let id = parseInt(localStorage.getItem("id") || "0");
     this.carDataService.getcar(id).subscribe((makes) => {
       console.log(makes)
+      for (let i = 0; i < makes.length; i++) {
+        makes[i].status = this.statusList.find(j => j.id == makes[i].status).name;
+        //makes[i].statuslogo = this.statusList.find(j => j.id == makes[i].status).status;
+      }
       this.car = makes;
     });
   }
+
+  detail(id: number) {
+    this.router.navigate(['/component/cardetail', id]);
+  }
+
 }

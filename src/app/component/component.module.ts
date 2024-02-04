@@ -10,10 +10,12 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalContentComponent } from './modal-content/modal-content.component';
 import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
+import { SlidercomponentComponent } from './slidercomponent/slidercomponent.component';
+import { CommentmodalComponent } from './commentmodal/commentmodal.component';
 
 @NgModule({
   declarations: [
-    ProfilesComponent, CarComponent, ModalContentComponent, ListComponent, DetailComponent
+    ProfilesComponent, CarComponent, ModalContentComponent, ListComponent, DetailComponent, SlidercomponentComponent, CommentmodalComponent
   ],
   imports: [
     CommonModule,

@@ -35,27 +35,44 @@ export class CarService {
   }
 
   saveimg(model: any): Observable<any> {
-    const token = this.getToken();       
+    const token = this.getToken();
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.post(environment.BASE_URL + 'vehicle/saveimg', model, { headers });
   }
 
   deleteimg(model: any): Observable<any> {
-    const token = this.getToken();       
+    const token = this.getToken();
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.post(environment.BASE_URL + 'vehicle/deleteimg', model, { headers });
   }
 
-  savecar(model: any): Observable<any> {``
-    const token = this.getToken();       
+  savecar(model: any): Observable<any> {
+    ``
+    const token = this.getToken();
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.post(environment.BASE_URL + 'vehicle/sellcar', model, { headers });
   }
 
   getcar(id: number): Observable<CarsModel[]> {
-    const token = this.getToken();       
+    const token = this.getToken();
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.get<CarsModel[]>(environment.BASE_URL + `vehicle/getcarsbyuserid/${id}`, { headers });
+  }
+
+  getcardetail(id: number): Observable<any> {
+    return this.http.get<any>(environment.BASE_URL + `vehicle/${id}`);
+  }
+
+  getcomments(id: number): Observable<any[]> {
+    return this.http.get<any[]>(environment.BASE_URL + `comments/comment/${id}`);
+  }
+
+  getreply(id: number): Observable<any[]> {
+    return this.http.get<any[]>(environment.BASE_URL + `comments/reply/${id}`);
+  }
+
+  savereply(data: any): Observable<any> {
+    return this.http.post<any>(environment.BASE_URL + `comments`, data);
   }
 
   private getToken(): string {

@@ -1,7 +1,9 @@
-td , th{
+td,
+th {
     background-color: white;
 }
 
-tr :hover{
+table tr:hover td {
     background-color: beige;
+    cursor: pointer;
 }

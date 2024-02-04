@@ -18,7 +18,7 @@ export class CarComponent implements OnInit {
   years: Ddl[] = [];
   types: Ddl[] = [];
   variantList: any[] = [];
-
+  moreinfo: boolean = true;
   categoryList: any[] = [];
   selectedFiles: CustomFile[] = [];
 
@@ -34,17 +34,15 @@ export class CarComponent implements OnInit {
   Transmission: string = '';
   statesList: any[] = [];
   imgList: any[] = [];
-
-
-
   car: Car = new Car();
 
   statusList = [
-    { "id": "a", "name": "Status 1" },
-    { "id": "a", "name": "Status 2" },
-    { "id": "a", "name": "Status 3" },
-    { "id": "a", "name": "Status 4" }
+    { "id": "s", "name": "Sold" },
+    { "id": "r", "name": "Reject" },
+    { "id": "p", "name": "Pending" },
+    { "id": "a", "name": "Approved" }
   ]
+
   featureList: any[] = [];
   techSpecs_list: any[] = [];
 
@@ -106,13 +104,15 @@ export class CarComponent implements OnInit {
   onVarianChange(link: any): void {
     link = link.id;
     this.carDataService.getdetail(link).subscribe((cat) => {
+      this.moreinfo = true;
+      console.log(this.moreinfo);
       this.type = cat.seating_capacity
       this.Engine = cat.engine_size;
       this.efficiency = cat.fuel_consumption;
       this.Transmission = cat.gear;
       this.featureList = cat.feature_list;
       this.techSpecs_list = cat.techSpecs_list;
-      this.variantID = link;
+      this.variantID = link;      
     });
   }
 
@@ -130,7 +130,7 @@ export class CarComponent implements OnInit {
     for (let i = 0; i < this.selectedFiles.length; i++) {
       let fileBase64 = '';
       let file = this.selectedFiles[i];
-      if (file) {        
+      if (file) {
         const reader = new FileReader();
         reader.onload = (e: any) => {
           fileBase64 = e.target.result;

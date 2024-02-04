@@ -63,7 +63,7 @@ export const ComponentsRoutes: Routes = [
 				component: CarComponent
 			},
 			{
-				path: 'detail',
+				path: 'cardetail/:id',
 				component: DetailComponent
 			}
 		]

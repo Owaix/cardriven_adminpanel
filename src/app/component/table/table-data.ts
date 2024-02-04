@@ -44,8 +44,8 @@ export class CarsModel {
     is_feature: boolean | null = null;
     createdAt: string = "";
     created_date: string = "";
+    statuslogo: string = "";
 }
-
 
 export const TopSelling: Product[] = [
 
