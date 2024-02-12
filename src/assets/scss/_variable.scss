@@ -67,8 +67,8 @@ $gray-900: #212529 !default;
 $black: #000 !default;
 
 $blue: #009efb !default;
-$indigo: #6610f2 !default;
-$purple: #7460ee !default;
+$indigo: #009efb !default;
+$purple: #009efb !default;
 $pink: #e83e8c !default;
 $red: #f62d51 !default;
 $orange: #fb8c00 !default;
@@ -76,7 +76,7 @@ $yellow: #ffbc34 !default;
 $green: #39c449 !default;
 $teal: #20c997 !default;
 $cyan: #4fc3f7 !default;
-$primary: #7460ee !default;
+$primary: #009efb !default;
 $text-muted: $gray-500 !default;
 $inverse: #2f3d4a !default;
 
@@ -157,7 +157,7 @@ $enable-negative-margins: true;
 // 
 $grid-gutter-width: 30px !default;
 $main-body-bg: #fff !default;
-$body-bg: #f2f7f8;
+$body-bg: #fafafa;
 $body-color: #54667a !default;
 
 // 

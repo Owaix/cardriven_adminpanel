@@ -45,6 +45,7 @@ export class CarsModel {
     createdAt: string = "";
     created_date: string = "";
     statuslogo: string = "";
+    identifier: string = "";
 }
 
 export const TopSelling: Product[] = [

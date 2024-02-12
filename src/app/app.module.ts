@@ -20,14 +20,13 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { Approutes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SpinnerComponent } from './shared/spinner.component';
-import { RegisterComponent } from './users/register/register.component';
-import { LoginComponent } from './users/login/login.component';
-
+import { ReadMorePipe } from './services/readmorepipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpinnerComponent   
+    SpinnerComponent,
+    ReadMorePipe
   ],
   imports: [
     CommonModule,
@@ -37,7 +36,7 @@ import { LoginComponent } from './users/login/login.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    RouterModule.forRoot(Approutes, { useHash: false}),
+    RouterModule.forRoot(Approutes, { useHash: false }),
     FullComponent,
     NavigationComponent,
     SidebarComponent,

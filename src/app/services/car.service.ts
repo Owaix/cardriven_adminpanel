@@ -46,8 +46,7 @@ export class CarService {
     return this.http.post(environment.BASE_URL + 'vehicle/deleteimg', model, { headers });
   }
 
-  savecar(model: any): Observable<any> {
-    ``
+  savecar(model: any): Observable<any> {    
     const token = this.getToken();
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.post(environment.BASE_URL + 'vehicle/sellcar', model, { headers });
@@ -64,7 +63,10 @@ export class CarService {
   }
 
   getcomments(id: number): Observable<any[]> {
-    return this.http.get<any[]>(environment.BASE_URL + `comments/comment/${id}`);
+    const token = this.getToken();
+    console.log(token);
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    return this.http.get<any[]>(environment.BASE_URL + `comments/comment/${id}`, { headers });
   }
 
   getreply(id: number): Observable<any[]> {

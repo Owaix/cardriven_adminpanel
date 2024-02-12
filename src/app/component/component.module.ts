@@ -12,10 +12,15 @@ import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
 import { SlidercomponentComponent } from './slidercomponent/slidercomponent.component';
 import { CommentmodalComponent } from './commentmodal/commentmodal.component';
+import { NgxEditorModule } from 'ngx-editor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { CommentsComponent } from './comments/comments.component';
+import { NumberFormatDirective } from '../services/numberdirective';
 
 @NgModule({
   declarations: [
-    ProfilesComponent, CarComponent, ModalContentComponent, ListComponent, DetailComponent, SlidercomponentComponent, CommentmodalComponent
+    NumberFormatDirective ,ProfilesComponent, CarComponent, ModalContentComponent, ListComponent, DetailComponent, SlidercomponentComponent, CommentmodalComponent, CommentsComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +28,9 @@ import { CommentmodalComponent } from './commentmodal/commentmodal.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    NgSelectModule
+    NgSelectModule,
+    NgxEditorModule,
+    NgxSpinnerModule,
   ],
 })
 

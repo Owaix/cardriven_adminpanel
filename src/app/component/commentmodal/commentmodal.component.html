@@ -1,8 +1,8 @@
-<section style="background-color: #eee;">
-    <div class="container my-5 py-5">
+<section style="background-color: #ffffff;">
+    <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-12 col-lg-10 col-xl-8">
-                <div class="card">
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <div class="card" style="background-color: #ffffff;">
                     <div class="card-body">
                         <div class="d-flex flex-start align-items-center">
                             <img class="rounded-circle shadow-1-strong me-3" src="{{comment.profile_img}}" alt="avatar"
@@ -38,12 +38,13 @@
                                 <img class="rounded-circle shadow-1-strong me-3" src="{{profile_img}}" alt="avatar"
                                     width="40" height="40" />
                                 <div class="form-outline w-100">
-                                    <textarea name="type" [(ngModel)]="reply" class="form-control" id="textAreaExample" rows="4"
-                                        style="background: #fff;"></textarea>
-                                    <label class="form-label" for="textAreaExample">Message</label>
-                                </div>
-                            </div>
-                            <div class="float-end mt-2 pt-1">
+                                    <textarea name="type" [(ngModel)]="reply" class="form-control" id="textAreaExample"
+                                        rows="4" style="background: #fff;"></textarea>
+                                    <label class="form-label" for="textAreaExample"></label>
+                                </div>                                
+                            </div>    
+                            <p *ngIf="IserrorShow" style="color: red;">Comment Is Required</p>                        
+                            <div style="text-align: right;" >
                                 <button type="button" (click)="save()"
                                     style="margin-right: 10px;background-color: #009efb;"
                                     class="btn btn-primary btn-sm">Post

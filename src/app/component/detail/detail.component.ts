@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from '../modal-content/modal-content.component';
 import { CommentmodalComponent } from '../commentmodal/commentmodal.component';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-detail',
@@ -28,7 +29,11 @@ export class DetailComponent {
     // Add more comments as needed
   ];
 
-  constructor(private route: ActivatedRoute, private service: CarService, private modalService: NgbModal, private spinnerService: SpinnerService) {
+  constructor(private spinner: NgxSpinnerService,
+    private route: ActivatedRoute,
+    private service: CarService,
+    private modalService: NgbModal) {
+    this.startLoading();
     this.route.params.subscribe(params => {
       this.destinationId = params['id'];
 
@@ -37,68 +42,17 @@ export class DetailComponent {
         for (let i = 0; i < x.img_list.length; i++) {
           this.slides.push({ url: x.img_list[i], title: "" })
         }
+        
         this.car = x;
         this.featureList = x.feature_list;
-        this.techSpecs_list = x.techSpecs_list;
-
-        let comments: any[] = []
-        let replies: any[] = []
-
-        this.service.getcomments(this.destinationId).subscribe((x) => {
-          for (let i = 0; i < x.length; i++) {
-            let c = x[i];
-            let comment = {
-              carid: c.carid,
-              comment: c.comment,
-              commentdate: this.timeAgo(c.commentdate),
-              id: c.comid,
-              profile_img: c.profile_img,
-              name: c.name,
-              replies: []
-            }
-
-            let reply = {
-              id: c.id,
-              name: c.repname,
-              reply: c.reply,
-              replydate: this.timeAgo(c.replydate),
-              profile_img: c.repimg,
-              commentid: c.commentid
-            }
-
-            comments.push(comment)
-            replies.push(reply)
-          }
-
-          for (let i = 0; i < comments.length; i++) {
-            let comment = comments[i];
-            let com = replies.filter(x => x.commentid == comment.id)
-            if (com.length > 0) {
-              comment.replies.push(com);
-            }
-          }
-
-          console.log(comments);
-
-          this.uniqueArray = Array.from(
-            comments.reduce((acc, obj) => {
-              const key = JSON.stringify(obj);
-              if (!acc.has(key)) {
-                acc.set(key, obj);
-              }
-              return acc;
-            }, new Map()).values()
-          );
-          console.log("uniqueArray");
-          console.log(this.uniqueArray);
-
-        });
-
+        this.techSpecs_list = x.techSpecs_list; 
+        this.spinner.hide();
       });
     });
   }
 
   ngOnInit(): void {
+
   }
 
   openModal() {
@@ -110,52 +64,12 @@ export class DetailComponent {
   }
 
   startLoading() {
-    this.spinnerService.show();
-
-    // Simulate some async operation
-    setTimeout(() => {
-      this.spinnerService.hide();
-    }, 2000);
+    this.spinner.show();
   }
 
   getCurrentSlideUrl() {
     return `url('${this.slides[this.currentIndex].url}')`;
   }
 
-  openCommentModal(comment: any) {
-    comment.carid = this.destinationId;
-    console.log(comment);
-    const modalRef = this.modalService.open(CommentmodalComponent, {
-      size: 'lg'
-    });
-    modalRef.componentInstance.comment = comment;
-  }
 
-  timeAgo(date: string): string {
-    const currentDate = new Date();
-    const inputDate = new Date(date);
-
-    const timeDifferenceInSeconds = Math.floor((currentDate.getTime() - inputDate.getTime()) / 1000);
-
-    const secondsInMinute = 60;
-    const secondsInHour = 3600;
-    const secondsInDay = 86400;
-    const secondsInMonth = 2592000;
-
-    if (timeDifferenceInSeconds < secondsInMinute) {
-      return `${timeDifferenceInSeconds} seconds ago`;
-    } else if (timeDifferenceInSeconds < secondsInHour) {
-      const minutes = Math.floor(timeDifferenceInSeconds / secondsInMinute);
-      return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
-    } else if (timeDifferenceInSeconds < secondsInDay) {
-      const hours = Math.floor(timeDifferenceInSeconds / secondsInHour);
-      return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
-    } else if (timeDifferenceInSeconds < secondsInMonth) {
-      const days = Math.floor(timeDifferenceInSeconds / secondsInDay);
-      return `${days} ${days === 1 ? 'day' : 'days'} ago`;
-    } else {
-      const months = Math.floor(timeDifferenceInSeconds / secondsInMonth);
-      return `${months} ${months === 1 ? 'month' : 'months'} ago`;
-    }
-  }
 }

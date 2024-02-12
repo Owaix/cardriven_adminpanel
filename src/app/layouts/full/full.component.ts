@@ -9,26 +9,28 @@ import { SidebarComponent } from "src/app/shared/sidebar/sidebar.component";
 
 @Component({
   selector: "app-full-layout",
-  standalone:true,
-  imports:[RouterModule, SidebarComponent, NavigationComponent, CommonModule, NgbCollapseModule],
+  standalone: true,
+  imports: [RouterModule, SidebarComponent, NavigationComponent, CommonModule, NgbCollapseModule],
   templateUrl: "./full.component.html",
   styleUrls: ["./full.component.scss"],
 })
 export class FullComponent implements OnInit {
 
-  constructor(public router: Router) {}
+  constructor(public router: Router) { }
   public isCollapsed = false;
   public innerWidth: number = 0;
   public defaultSidebar: string = "";
   public showMobileMenu = false;
   public expandLogo = false;
   public sidebartype = "full";
-
+  public year: number = 0;
+  
   Logo() {
     this.expandLogo = !this.expandLogo;
   }
 
   ngOnInit() {
+    this.year = new Date().getFullYear();
     if (this.router.url === "/") {
       this.router.navigate(["/dashboard"]);
     }

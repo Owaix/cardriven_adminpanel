@@ -63,4 +63,6 @@ export class Car {
     year: number = 0;
     description: string = '';
     type: string = '';
+    mileage: number = 0;
+    identifier: string = '';
 }

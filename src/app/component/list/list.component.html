@@ -2,20 +2,19 @@
     <div class="card-body">
         <div class="form-row">
             <div class="form-group col-md-12">
-                <h4 class="card-title">Project Listing</h4>
-                <h5 class="card-subtitle text-muted">Overview of the projects</h5>
+                <h4 class="card-title">Your Listing</h4>
                 <div class="table-responsive">
                     <table class="table align-middle text-nowrap">
                         <thead>
                             <tr>
-                                <th class="text-dark font-medium fs-4">Team Lead</th>
-                                <th class="text-dark font-medium fs-4">Price</th>
-                                <th class="text-dark font-medium fs-4">Status</th>
-                                <th class="text-dark font-medium fs-4">Weeks</th>
+                                <th class="text-dark font-medium fs-4">Article</th>                                
+                                <th class="text-dark font-medium fs-4">Unique</th>     
+                                <th class="text-dark font-medium fs-4">Price(A$)</th>
+                                <th class="text-dark font-medium fs-4">Status</th>                                                       
                                 <th class="text-dark font-medium fs-4">Create Date</th>
                             </tr>
                         </thead>
-                        <tbody class="listrow" >
+                        <tbody class="listrow">
                             <tr (click)="detail(ts.id)" *ngFor='let ts of car'>
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -26,14 +25,13 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="fs-4">{{ts.price}}</td>
+                                <td>
+                                    <h5 class="mb-0 fw-normal">{{ts.identifier}}</h5>
+                                </td>
+                                <td class="fs-4"> {{ ts.price | currency:'USD':'symbol':'1.2-2' }}</td>
                                 <td>
                                     <span class="p-2 bg-rounded-circle d-inline-block ms-3">{{ts.status}}</span>
-                                </td>
-
-                                <td>
-                                    <h5 class="mb-0 fw-normal">{{ts.model}}</h5>
-                                </td>
+                                </td>                              
                                 <td>
                                     <h5 class="mb-0 fw-normal">{{ts.created_date}}</h5>
                                 </td>

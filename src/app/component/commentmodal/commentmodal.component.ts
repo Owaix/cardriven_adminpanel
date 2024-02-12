@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { CarService } from 'src/app/services/car.service';
+import { CarService } from '../../services/car.service';
 
 @Component({
   selector: 'app-commentmodal',
@@ -13,6 +13,7 @@ export class CommentmodalComponent implements OnInit {
   @Input() comment: any;
   profile_img: string = '';
   reply: string = '';
+  IserrorShow: boolean = false;
 
   constructor(public activeModal: NgbActiveModal, public carservice: CarService) {
     //this.comment.commentdate = this.timeAgo(this.comment.commentdate);  
@@ -27,6 +28,12 @@ export class CommentmodalComponent implements OnInit {
   }
 
   save() {
+    this.IserrorShow = false;
+    if (this.reply == '') {
+      this.IserrorShow = true;
+      return
+    }
+
     let car = { reply: this.reply, userid: localStorage.getItem("id"), commentid: this.comment.id }
     this.carservice.savereply(car).subscribe((x) => {
       this.activeModal.close();

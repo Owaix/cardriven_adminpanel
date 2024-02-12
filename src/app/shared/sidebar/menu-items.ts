@@ -21,11 +21,19 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/component/list',
     title: 'Listing',
-    icon: 'bi bi-bell',
+    icon: 'bi bi-hdd-stack',
     class: '',
     extralink: false,
     submenu: []
   },
+  {
+    path: '/component/comments',
+    title: 'Comments',
+    icon: 'bi bi-patch-check',
+    class: '',
+    extralink: false,
+    submenu: []
+  }
   // {
   //   path: '/component/alert',
   //   title: 'Alert',

@@ -1,83 +1,38 @@
 <!-- car-details.component.html -->
 
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
 
 <div style="background-color: white;" class="card">
     <div class="card-body">
         <div class="form-row">
             <div class="form-group col-md-12">
-                <div style="width: 500px; height: 200px; margin: 0 auto">
-                    <image-slider [slides]="slides"></image-slider>
+
+                <!-- <div class="body"> -->
+                <div class="grid">
+                    <div class="gridStyle grid-item1"></div>
+                    <div class="gridStyle grid-item2"></div>
+                    <div class="gridStyle grid-item3"></div>
+                    <div class="gridStyle grid-item4"></div>
+                    <div class="gridStyle grid-item5"></div>
+                    <div class="gridStyle grid-item6"></div>
+                    <div class="gridStyle grid-item7"></div>
+                    <div class="gridStyle grid-item8"></div>
                 </div>
+                <!-- </div> -->
+
+                <!-- <div style="width: 500px; height: 200px; margin: 0 auto">
+                    <image-slider [slides]="slides"></image-slider>
+                </div> -->
                 <h5 class="card-title">{{ car.make }} {{ car.model }}</h5>
-                <p class="card-text">{{ car.description }}</p>
+                <div [innerHTML]="car.description"></div>
                 <p class="card-text">Year: {{ car.years }}</p>
                 <p class="card-text">Price: {{ car.price }}</p>
 
                 <button (click)="openModal()" type="button" class="btn btn-info btn-rounded btn-sm"> Features / Tech
                     Specs </button>
-
-                <section class="gradient-custom">
-                    <div class="container my-5 py-5">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-body p-4">
-                                        <h4 class="text-center mb-4 pb-2">Comments Section</h4>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div *ngFor='let ts of uniqueArray' class="d-flex flex-start mt-4">
-                                                    <img class="rounded-circle shadow-1-strong me-3"
-                                                        src="{{ts.profile_img}}" alt="avatar" width="65" height="65" />
-                                                    <div class="flex-grow-1 flex-shrink-1">
-                                                        <div>
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <p class="mb-1">
-                                                                    {{ts.name}} <span class="small">- {{ts.commentdate}}
-                                                                    </span>
-                                                                </p>
-                                                                <a (click)="openCommentModal(ts)"
-                                                                    href="javascript:void(0)"><i
-                                                                        class="fas fa-reply fa-xs"></i><span
-                                                                        class="small"> reply</span></a>
-                                                            </div>
-                                                            <p class="small mb-0">
-                                                                {{ts.comment}}
-                                                            </p>
-                                                        </div>
-                                                        <div *ngFor='let rep of ts.replies[0]'
-                                                            class="d-flex flex-start mt-4">
-                                                            <a class="me-3" href="#">
-                                                                <img class="rounded-circle shadow-1-strong"
-                                                                    src="{{rep.profile_img}}" alt="avatar" width="65"
-                                                                    height="65" />
-                                                            </a>
-                                                            <div class="flex-grow-1 flex-shrink-1">
-                                                                <div>
-                                                                    <div
-                                                                        class="d-flex justify-content-between align-items-center">
-                                                                        <p class="mb-1">
-                                                                            {{rep.name}} <span class="small">-
-                                                                                {{rep.replydate}}
-                                                                            </span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <p class="small mb-0">
-                                                                        {{rep.reply}}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </div>
         </div>
     </div>

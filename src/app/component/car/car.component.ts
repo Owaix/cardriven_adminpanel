@@ -5,6 +5,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { UserService } from '../../services/users.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from '../modal-content/modal-content.component';
+import { Editor, Toolbar, Validators } from 'ngx-editor';
+import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-car',
@@ -22,6 +26,9 @@ export class CarComponent implements OnInit {
   categoryList: any[] = [];
   selectedFiles: CustomFile[] = [];
 
+  isTypeEmpty: boolean = false;
+  isPriceEmpty: boolean = false;
+
   selectedMake: number = 0;
   selectedModel: number = 0;
   selectedYear: number = 0;
@@ -37,19 +44,41 @@ export class CarComponent implements OnInit {
   car: Car = new Car();
 
   statusList = [
-    { "id": "s", "name": "Sold" },
-    { "id": "r", "name": "Reject" },
+    // { "id": "s", "name": "Sold" },
+    // { "id": "r", "name": "Reject" },
     { "id": "p", "name": "Pending" },
-    { "id": "a", "name": "Approved" }
+    // { "id": "a", "name": "Approved" }
   ]
 
   featureList: any[] = [];
   techSpecs_list: any[] = [];
 
-  constructor(private modalService: NgbModal, private carDataService: CarService, private userService: UserService, private sanitizer: DomSanitizer) { }
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+
+  constructor(
+    private modalService: NgbModal,
+    private carDataService: CarService,
+    private userService: UserService,
+    private sanitizer: DomSanitizer,
+    private router: Router) { }
 
   state = '';
+
+  editor: Editor = new Editor();
+  html = 'OWAIS';
+
   ngOnInit(): void {
+
+    this.editor = new Editor();
     this.carDataService.getMakes().subscribe((makes) => {
       console.log(makes)
       this.makes = makes;
@@ -64,7 +93,24 @@ export class CarComponent implements OnInit {
         alert(error.error.message);
       }
     );
+  }
 
+  numberOnly(event: any): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+
+    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+      return false;
+    }
+
+    if (charCode === 46 && event.target.value.includes('.')) {
+      return false;
+    }
+
+    return true;
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
   }
 
   onMakeChange(obj: any): void {
@@ -112,7 +158,7 @@ export class CarComponent implements OnInit {
       this.Transmission = cat.gear;
       this.featureList = cat.feature_list;
       this.techSpecs_list = cat.techSpecs_list;
-      this.variantID = link;      
+      this.variantID = link;
     });
   }
 
@@ -175,10 +221,25 @@ export class CarComponent implements OnInit {
   }
 
   onSave(): void {
+    let msg = "";
+    this.isPriceEmpty = false;
+    this.isTypeEmpty = false;
     if (this.imgList.length == 0) {
-      alert('Car must contains atleast one image');
+      msg = 'Car must contains atleast one image\n';
+    }
+    if (this.car.type == "") {
+      msg += 'Please select type\n';
+      this.isTypeEmpty = true;
+    }
+    if (this.car.price == "") {
+      msg += 'Please enter price';
+      this.isPriceEmpty = true;
+    }
+    if (msg != "") {
+      alert(msg);
       return;
     }
+
     let model = {
       "description": this.car.description,
       "state": this.state,
@@ -196,11 +257,17 @@ export class CarComponent implements OnInit {
       "category": "sedan",
       "variant": "orjen",
       "city": "larkano",
-      "parked_near": "dffsd fffsdf"
+      "parked_near": "dffsd fffsdf",
+      "identifier" : this.car.identifier
     }
     console.log(model);
     this.carDataService.savecar(model).subscribe((years) => {
-      alert(years.message);
+      Swal.fire({
+        title: "Saved",
+        text: "Car Has been created successfully",
+        icon: "success"
+      });
+      this.router.navigate(['/component/list']);
     });
   }
 
