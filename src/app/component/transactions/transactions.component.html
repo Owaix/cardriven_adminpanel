@@ -1,0 +1,45 @@
+<div style="background-color: white;" class="card">
+    <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="card-title">Your Transactions</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="basic-addon1">
+                            <div class="input-group-prepend">
+                                <button style="background-color: #1aa8fb;" class="btn btn-outline-secondary"
+                                    type="button">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Description</th>
+                                <th scope="col">Transaction Date</th>
+                                <th scope="col">Debit</th>
+                                <!-- <th scope="col">Credit</th>
+                                <th scope="col">Balance</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let ts of arr'>
+                                <th scope="row">{{ts.description}}</th>                                
+                                <td>{{ts.create_date}}</td>
+                                <td>{{ts.debit}}</td>
+                                <!-- <td>{{ts.credit}}</td>
+                                <td>{{ts.balance}}</td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

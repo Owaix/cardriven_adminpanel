@@ -5,7 +5,7 @@ import { SlideInterface } from '../slidercomponent/slidercomponent.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from '../modal-content/modal-content.component';
 import { CommentmodalComponent } from '../commentmodal/commentmodal.component';
-import { SpinnerService } from 'src/app/services/spinner.service';
+// import { SpinnerService } from 'src/app/services/spinner.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -42,10 +42,10 @@ export class DetailComponent {
         for (let i = 0; i < x.img_list.length; i++) {
           this.slides.push({ url: x.img_list[i], title: "" })
         }
-        
+
         this.car = x;
         this.featureList = x.feature_list;
-        this.techSpecs_list = x.techSpecs_list; 
+        this.techSpecs_list = x.techSpecs_list;
         this.spinner.hide();
       });
     });

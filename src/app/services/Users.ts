@@ -10,6 +10,7 @@ export class User {
     image: string = '';
     token: string = '';
     isImage: boolean = true;
+    license: string = '';
 }
 
 export class Ddl {
@@ -65,4 +66,12 @@ export class Car {
     type: string = '';
     mileage: number = 0;
     identifier: string = '';
+    Driveaway: boolean = false;
+}
+
+export class CardDetails {
+    Name: string = '';
+    Number: string = '';
+    Expiry: string = '';
+    CVN: string = '';
 }

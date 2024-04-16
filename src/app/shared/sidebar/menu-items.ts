@@ -12,7 +12,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '/component/car',
-    title: 'Create Car',
+    title: 'Create a Car',
     icon: 'bi bi-bell',
     class: '',
     extralink: false,
@@ -34,14 +34,23 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: []
   }
-  // {
-  //   path: '/component/alert',
-  //   title: 'Alert',
-  //   icon: 'bi bi-bell',
-  //   class: '',
-  //   extralink: false,
-  //   submenu: []
-  // },
+  ,
+  {
+    path: '/component/transactions',
+    title: 'Transactions',
+    icon: 'bi bi-people',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/component/plans',
+    title: 'Choose Plans',
+    icon: 'bi bi-bell',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
   // {
   //   path: '/component/badges',
   //   title: 'Badges',

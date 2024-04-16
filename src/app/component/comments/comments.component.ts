@@ -3,21 +3,29 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommentmodalComponent } from '../commentmodal/commentmodal.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CarService } from '../../services/car.service';
+import { EncryptionService } from '../../services/encryption.service';
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
+
 export class CommentsComponent implements OnInit {
 
   comments: any[] = [];
   replies: any[] = [];
   uniqueArray: any[] = [];
   destinationId = 640;
-  constructor(private service: CarService, private modalService: NgbModal, private spinner: NgxSpinnerService) { }
+
+  constructor(
+    private encryptionService: EncryptionService,
+    private service: CarService,
+    private modalService: NgbModal,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+
     this.service.getcomments(this.destinationId).subscribe((x) => {
       for (let i = 0; i < x.length; i++) {
         let c = x[i];
@@ -26,9 +34,11 @@ export class CommentsComponent implements OnInit {
           comment: c.comment,
           commentdate: this.timeAgo(c.commentdate),
           id: c.comid,
-          profile_img: c.profile_img,
-          name: c.name,
-          replies: []
+          profile_img: c.url,
+          name: c.make + " " + c.model + " (" + c.year + ")",
+          replies: [],
+          username: c.name,
+          userImg: c.profile_img
         }
 
         let reply = {

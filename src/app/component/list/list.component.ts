@@ -18,13 +18,26 @@ export class ListComponent implements OnInit {
     { "id": "s", "name": "Sold", "status": "bg-danger" },
     { "id": "r", "name": "Reject", "status": "bg-danger" },
     { "id": "p", "name": "Pending", "status": "bg-danger" },
-    { "id": "a", "name": "Approved", "status": "bg-danger" }
+    { "id": "a", "name": "Approved", "status": "bg-danger" },
+    { "id": "f", "name": "Pay-Failed", "status": "bg-danger" }
   ]
 
   constructor(private carDataService: CarService, private router: Router) { }
   ngOnInit(): void {
-    let id = parseInt(localStorage.getItem("id") || "0");
-    this.carDataService.getcar(id).subscribe((makes) => {
+    let id = localStorage.getItem("id") || "";
+    this.carDataService.getcar(id, '').subscribe((makes) => {
+      console.log(makes)
+      for (let i = 0; i < makes.length; i++) {
+        makes[i].status = this.statusList.find(j => j.id == makes[i].status).name;
+        //makes[i].statuslogo = this.statusList.find(j => j.id == makes[i].status).status;
+      }
+      this.car = makes;
+    });
+  }
+
+  onKeyPress($event: any) {
+    let id = localStorage.getItem("id") || "";
+    this.carDataService.getcar(id, $event.target.value).subscribe((makes) => {
       console.log(makes)
       for (let i = 0; i < makes.length; i++) {
         makes[i].status = this.statusList.find(j => j.id == makes[i].status).name;

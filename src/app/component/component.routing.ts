@@ -13,6 +13,9 @@ import { CarComponent } from './car/car.component';
 import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
 import { CommentsComponent } from './comments/comments.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PlansComponent } from './plans/plans.component';
 
 
 export const ComponentsRoutes: Routes = [
@@ -70,6 +73,18 @@ export const ComponentsRoutes: Routes = [
 			{
 				path: 'comments',
 				component: CommentsComponent
+			},
+			{
+				path: 'transactions',
+				component: TransactionsComponent
+			},
+			{
+				path: 'payment',
+				component: PaymentComponent
+			},
+			{
+				path: 'plans',
+				component: PlansComponent
 			}
 		]
 	}

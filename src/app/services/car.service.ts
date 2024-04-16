@@ -26,7 +26,7 @@ export class CarService {
     return this.http.get<Ddl[]>(`${this.apiUrl}/year/${model}`);
   }
 
-  getCategory(model: any): Observable<Ddl[]> {
+  getCategory(model: any): Observable<Ddl[]> {    
     return this.http.post<Ddl[]>(`${this.apiUrl}/category`, model);
   }
 
@@ -46,16 +46,17 @@ export class CarService {
     return this.http.post(environment.BASE_URL + 'vehicle/deleteimg', model, { headers });
   }
 
-  savecar(model: any): Observable<any> {    
+  savecar(model: any): Observable<any> {
     const token = this.getToken();
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.post(environment.BASE_URL + 'vehicle/sellcar', model, { headers });
   }
 
-  getcar(id: number): Observable<CarsModel[]> {
+  getcar(id: string, search: string): Observable<CarsModel[]> {
     const token = this.getToken();
+    var body = { search: search, user_id: id }
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-    return this.http.get<CarsModel[]>(environment.BASE_URL + `vehicle/getcarsbyuserid/${id}`, { headers });
+    return this.http.post<CarsModel[]>(environment.BASE_URL + `vehicle/getcarsbyuserid`, body, { headers });
   }
 
   getcardetail(id: number): Observable<any> {
@@ -75,6 +76,30 @@ export class CarService {
 
   savereply(data: any): Observable<any> {
     return this.http.post<any>(environment.BASE_URL + `comments`, data);
+  }
+
+  transbyuserid(): Observable<any[]> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    return this.http.get<any[]>(environment.BASE_URL + `transaction/transbyuserid`, { headers });
+  }
+
+  payment(data: string): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    return this.http.post<any>(environment.BASE_URL + `payment`, data, { headers });
+  }
+
+  getplans(): Observable<any[]> {
+    return this.http.get<any[]>(environment.BASE_URL + `ddl/plans`);
+  }
+
+  getinventory_level(id: string | null): Observable<any[]> {
+    return this.http.get<any[]>(environment.BASE_URL + `ddl/inventory_level/` + id);
+  }
+
+  getplan(id: number): Observable<any> {
+    return this.http.get<any>(environment.BASE_URL + `ddl/plans/` + id);
   }
 
   private getToken(): string {

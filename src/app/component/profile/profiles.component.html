@@ -6,7 +6,8 @@
           <img style="width: 200px;height: 200px;border-radius: 45px;" src="{{img}}">
           <input type="hidden" value="{{img}}" [(ngModel)]="user.profilePic" name="profilePic">
           <br>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)">
+          <input type="file" class="form-control-file" style="padding-top: 10px;" id="exampleFormControlFile1"
+            (change)="onFileChange($event)">
         </div>
         <div class="form-group col-md-6">
           <label for="inputEmail4">Name</label>
@@ -23,6 +24,11 @@
           <input type="text" required class="form-control" id="inputPhone" placeholder="Phone" [(ngModel)]="user.phone"
             name="phone">
         </div>
+        <div class="form-group col-md-6">
+          <label for="inputlicense">License #</label>
+          <input type="text" required class="form-control" id="inputlicense" placeholder="license" [(ngModel)]="user.license"
+            name="license">
+        </div>        
       </div>
       <div class="form-group">
         <label for="inputAddress">Address</label>

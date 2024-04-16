@@ -19,8 +19,9 @@ export class ProfilesComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    let id  = localStorage.getItem('id');
     this.statesList = this.userService.get_states();
-    this.userService.get_profile().subscribe(
+    this.userService.get_profile(id).subscribe(
       response => {
         let user = response.userData[0];
         console.log(user);
@@ -30,6 +31,7 @@ export class ProfilesComponent implements OnInit {
         this.user.name = user.name;
         this.img = user.profile_img;
         this.user.state = user.state;
+        this.user.license = user.license;
       },
       error => {
         alert(error.error.message);
@@ -43,7 +45,7 @@ export class ProfilesComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.fileBase64 = e.target.result;        
+        this.fileBase64 = e.target.result;
       };
       reader.readAsDataURL(file);
     }

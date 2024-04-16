@@ -42,7 +42,7 @@ export class CarComponent implements OnInit {
   statesList: any[] = [];
   imgList: any[] = [];
   car: Car = new Car();
-
+  isAllow: boolean = false;
   statusList = [
     // { "id": "s", "name": "Sold" },
     // { "id": "r", "name": "Reject" },
@@ -77,6 +77,22 @@ export class CarComponent implements OnInit {
   html = 'OWAIS';
 
   ngOnInit(): void {
+    let id = localStorage.getItem('id');
+    this.carDataService.getinventory_level(id).subscribe((list) => {
+
+      list.forEach(x => {
+        var result = new Date(x.created_date);
+        result.setDate(result.getDate() + x.days);
+        if (new Date() < result) {
+          this.isAllow = true;
+        }
+      })
+
+      if (!this.isAllow) {
+        alert('You are not currently enroll the any plan.')
+        this.router.navigate(['/component/plans']);
+      }
+    });
 
     this.editor = new Editor();
     this.carDataService.getMakes().subscribe((makes) => {
@@ -84,7 +100,7 @@ export class CarComponent implements OnInit {
       this.makes = makes;
     });
 
-    this.userService.get_profile().subscribe(
+    this.userService.get_profile(id).subscribe(
       response => {
         let user = response.userData[0];
         this.state = user.state;
@@ -258,7 +274,8 @@ export class CarComponent implements OnInit {
       "variant": "orjen",
       "city": "larkano",
       "parked_near": "dffsd fffsdf",
-      "identifier" : this.car.identifier
+      "identifier": this.car.identifier,
+      "Driveaway": this.car.Driveaway
     }
     console.log(model);
     this.carDataService.savecar(model).subscribe((years) => {

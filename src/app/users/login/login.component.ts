@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     //this.cookieService.set('rememberMe', "343434", 30);
     const rememberMe = this.cookieService.get('rememberMe');
     if (rememberMe) {
-      this.router.navigate(['/dashboard']);
+      //this.router.navigate(['/dashboard']);
     }
   }
 

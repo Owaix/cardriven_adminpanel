@@ -20,6 +20,7 @@ export class CommentmodalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.comment);
     this.profile_img = localStorage.getItem("profile_img") || '';
   }
 

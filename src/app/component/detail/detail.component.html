@@ -9,9 +9,11 @@
     <div class="card-body">
         <div class="form-row">
             <div class="form-group col-md-12">
-
+                <h1 style="font-family: monospace;font-weight: 700;font-size: xx-large;">{{ car.make }} {{ car.model }}
+                    {{ car.year }}</h1>
+                <br />
                 <!-- <div class="body"> -->
-                <div class="grid">
+                <!-- <div class="grid">
                     <div class="gridStyle grid-item1"></div>
                     <div class="gridStyle grid-item2"></div>
                     <div class="gridStyle grid-item3"></div>
@@ -20,16 +22,48 @@
                     <div class="gridStyle grid-item6"></div>
                     <div class="gridStyle grid-item7"></div>
                     <div class="gridStyle grid-item8"></div>
-                </div>
+                </div> -->
                 <!-- </div> -->
 
-                <!-- <div style="width: 500px; height: 200px; margin: 0 auto">
+                <div style="width: 500px; height: 200px; margin: 0 auto">
                     <image-slider [slides]="slides"></image-slider>
-                </div> -->
-                <h5 class="card-title">{{ car.make }} {{ car.model }}</h5>
+                </div>
                 <div [innerHTML]="car.description"></div>
                 <p class="card-text">Year: {{ car.years }}</p>
                 <p class="card-text">Price: {{ car.price }}</p>
+
+                <table>
+                    <tr>
+                        <td>Alfreds Futterkiste</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                    </tr>
+                    <tr>
+                        <td>Centro comercial Moctezuma</td>
+                        <td>Francisco Chang</td>
+                        <td>Mexico</td>
+                    </tr>
+                    <tr>
+                        <td>Ernst Handel</td>
+                        <td>Roland Mendel</td>
+                        <td>Austria</td>
+                    </tr>
+                    <tr>
+                        <td>Island Trading</td>
+                        <td>Helen Bennett</td>
+                        <td>UK</td>
+                    </tr>
+                    <tr>
+                        <td>Laughing Bacchus Winecellars</td>
+                        <td>Yoshi Tannamuri</td>
+                        <td>Canada</td>
+                    </tr>
+                    <tr>
+                        <td>Magazzini Alimentari Riuniti</td>
+                        <td>Giovanni Rovelli</td>
+                        <td>Italy</td>
+                    </tr>
+                </table>
 
                 <button (click)="openModal()" type="button" class="btn btn-info btn-rounded btn-sm"> Features / Tech
                     Specs </button>

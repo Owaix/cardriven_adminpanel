@@ -17,10 +17,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CommentsComponent } from './comments/comments.component';
 import { NumberFormatDirective } from '../services/numberdirective';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PlansComponent } from './plans/plans.component';
+import { CreditCardDirective, MmYyDateDirective } from '../services/card-mask.directive'; // Import your pipe here
 
 @NgModule({
   declarations: [
-    NumberFormatDirective ,ProfilesComponent, CarComponent, ModalContentComponent, ListComponent, DetailComponent, SlidercomponentComponent, CommentmodalComponent, CommentsComponent
+    CreditCardDirective,MmYyDateDirective,
+    NumberFormatDirective, ProfilesComponent, CarComponent, ModalContentComponent, ListComponent, DetailComponent, SlidercomponentComponent, CommentmodalComponent, CommentsComponent, TransactionsComponent, PaymentComponent, PlansComponent
   ],
   imports: [
     CommonModule,

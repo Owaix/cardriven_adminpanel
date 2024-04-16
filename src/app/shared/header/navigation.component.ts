@@ -24,8 +24,8 @@ export class NavigationComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-
-    this.userService.get_profile().subscribe(
+    let id  = localStorage.getItem('id');
+    this.userService.get_profile(id).subscribe(
       response => {
         let user = response.userData[0];
         this.name = user.name;

@@ -22,10 +22,10 @@ export class UserService {
         });
     }
 
-    get_profile(): Observable<any> {
+    get_profile(id: string | null): Observable<any> {
         const token = this.getToken();  // Replace this with your method of retrieving the token        
         const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-        return this.http.get(environment.BASE_URL + 'users/me', { headers });
+        return this.http.get(environment.BASE_URL + 'users/me/' + id, { headers });
     }
 
     update_profile(user: User): Observable<any> {

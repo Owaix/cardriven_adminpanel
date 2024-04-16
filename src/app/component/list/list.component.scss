@@ -7,3 +7,31 @@ table tr:hover td {
     background-color: beige;
     cursor: pointer;
 }
+
+.Approved {
+    background-color: green;
+    border-radius: 39px;
+    padding: 4px 6px 4px 6px !important;
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.Pending {
+    background-color: red;
+    border-radius: 39px;
+    padding: 4px 6px 4px 6px !important;
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.Pay-Failed,
+.Reject {
+    background-color: grey;
+    border-radius: 39px;
+    padding: 4px 6px 4px 6px !important;
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+}

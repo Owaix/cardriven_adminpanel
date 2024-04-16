@@ -1,0 +1,37 @@
+<div style="background-color: white;" class="card">
+    <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <div class="alert alert-primary" role="alert">
+                    Current Plan <a href="javascript:void(0)" class="alert-link">Economy</a>. 26 Days Left.
+                </div>
+                <br>
+                <br>
+                <h1>Choose Your Plan</h1>
+                <br>
+                <br>
+                <div class="row">
+                    <div *ngFor="let item of plans" class="col-sm-3">
+                        <div (click)="openModal(item.id)" class="card cards">
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.plan}}</h5>
+                                <p class="">{{item.descp}}</p>
+                                <p><span
+                                        style="font-size: 30px;font-weight: bolder;">${{item.price}}</span><span>/month</span>
+                                </p>
+                                <a style="color: white;width: 203px;" href="javascript:void(0)"
+                                    class="btn btn-primary">Select</a>
+                                <br>
+                                <ul style="padding-top: 20px;">
+                                    <li class="">{{item.fromitems}}-{{item.toitems}} items per month</li>
+                                    <li class="">All Base Builder features</li>
+                                    <li class="">SEO for listings</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
