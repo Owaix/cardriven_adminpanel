@@ -9,8 +9,10 @@
     <div class="card-body">
         <div class="form-row">
             <div class="form-group col-md-12">
-                <h1 style="font-family: monospace;font-weight: 700;font-size: xx-large;">{{ car.make }} {{ car.model }}
-                    {{ car.year }}</h1>
+                <h1 style=" color: #26adfc; font-family: monospace;font-weight: 700;font-size: revert-layer;">{{
+                    car.make |
+                    uppercase }} </h1>
+                <h2>{{ car.model }} {{ car.variant }}</h2>
                 <br />
                 <!-- <div class="body"> -->
                 <!-- <div class="grid">
@@ -28,45 +30,47 @@
                 <div style="width: 500px; height: 200px; margin: 0 auto">
                     <image-slider [slides]="slides"></image-slider>
                 </div>
-                <div [innerHTML]="car.description"></div>
-                <p class="card-text">Year: {{ car.years }}</p>
-                <p class="card-text">Price: {{ car.price }}</p>
-
-                <table>
+                <br>
+                <br>
+                <br>
+                <table class="table">
                     <tr>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
+                        <td>Price (AUD)</td>
+                        <td style="font-weight: bold;" >{{car.price | currency:'USD'}}</td>
                     </tr>
                     <tr>
-                        <td>Centro comercial Moctezuma</td>
-                        <td>Francisco Chang</td>
-                        <td>Mexico</td>
+                        <td>Milage</td>
+                        <td>{{car.mileage}}</td>
                     </tr>
                     <tr>
-                        <td>Ernst Handel</td>
-                        <td>Roland Mendel</td>
-                        <td>Austria</td>
+                        <td>Fuel Consumption</td>
+                        <td>{{car.fuel_consumption}}</td>
                     </tr>
                     <tr>
-                        <td>Island Trading</td>
-                        <td>Helen Bennett</td>
-                        <td>UK</td>
+                        <td>Body Type</td>
+                        <td>{{car.category}}</td>
                     </tr>
                     <tr>
-                        <td>Laughing Bacchus Winecellars</td>
-                        <td>Yoshi Tannamuri</td>
-                        <td>Canada</td>
+                        <td>Manufactured Year</td>
+                        <td>{{ car.year }}</td>
                     </tr>
                     <tr>
-                        <td>Magazzini Alimentari Riuniti</td>
-                        <td>Giovanni Rovelli</td>
-                        <td>Italy</td>
+                        <td>Transmission</td>
+                        <td>{{car.gear}}</td>
+                    </tr>
+                    <tr>
+                        <td>Specs</td>
+                        <td>{{car.specs}}</td>
                     </tr>
                 </table>
 
                 <button (click)="openModal()" type="button" class="btn btn-info btn-rounded btn-sm"> Features / Tech
                     Specs </button>
+                <br>
+                <br>
+                <br>
+                <h3>Description</h3>
+                <div [innerHTML]="car.description"></div>
             </div>
         </div>
     </div>

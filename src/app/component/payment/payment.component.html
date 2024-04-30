@@ -1,6 +1,10 @@
 <div style="background-color: white;" class="card">
     <div class="card-body">
         <div class="form-row">
+            <div *ngIf="dataLoaded" style="position: fixed;margin-left: 200px;margin-top: 200px;"
+                class="spinner-border text-primary text-center" role="status">
+                <span class="visually-hidden"></span>
+            </div>
             <form (ngSubmit)="onSave()">
                 <div class="form-group col-md-12">
                     <div class="panel panel-default">
@@ -14,15 +18,16 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <input [(ngModel)]="CardDetails.Name" name="Name" autocomplete="off" type="text"
-                                        class="form-control" id="cardNumber" placeholder="NAME ON CARD" required
-                                        autofocus />
+                                        [className]="isNameEmpty ? 'brd-red form-control' : 'brd-black form-control'"
+                                        id="cardNumber" placeholder="NAME ON CARD" required autofocus />
                                 </div>
                             </div>
                             <br>
                             <div class="form-group">
                                 <div class="input-group">
                                     <input [(ngModel)]="CardDetails.Number" name="Number" autocomplete="off"
-                                        [value]="cardNumber" creditCardMask type="text" class="form-control"
+                                        [value]="cardNumber" creditCardMask type="text"
+                                        [className]="isNumberEmpty ? 'brd-red form-control' : 'brd-black form-control'"
                                         id="cardNumber" placeholder="Valid Card Number" required autofocus />
                                     <span class="input-group-addon"><span
                                             class="glyphicon glyphicon-lock"></span></span>
@@ -53,6 +58,7 @@
                     <div class="alert alert-success" role="alert">
                         Final Payment : <span style="font-weight: 700;">${{price}}</span>
                     </div>
+                    <div style="color: red;font-size: 12px;font-weight: 600;" [innerHtml]="msg" *ngIf="msg"></div>
                     <div class="checkbox pull-right">
                         <label>
                             <input type="checkbox" />
@@ -60,7 +66,7 @@
                         </label>
                     </div>
                     <br />
-                    <button type="submit" class="btn btn-primary">Pay</button>
+                    <button type="submit" [disabled]="isDisablebutton" class="btn btn-primary">Pay</button>
                 </div>
             </form>
         </div>

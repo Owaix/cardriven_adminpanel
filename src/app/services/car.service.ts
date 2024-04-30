@@ -26,7 +26,7 @@ export class CarService {
     return this.http.get<Ddl[]>(`${this.apiUrl}/year/${model}`);
   }
 
-  getCategory(model: any): Observable<Ddl[]> {    
+  getCategory(model: any): Observable<Ddl[]> {
     return this.http.post<Ddl[]>(`${this.apiUrl}/category`, model);
   }
 
@@ -59,8 +59,8 @@ export class CarService {
     return this.http.post<CarsModel[]>(environment.BASE_URL + `vehicle/getcarsbyuserid`, body, { headers });
   }
 
-  getcardetail(id: number): Observable<any> {
-    return this.http.get<any>(environment.BASE_URL + `vehicle/${id}`);
+  getcardetail(id: number, user_id: string | null): Observable<any> {
+    return this.http.get<any>(environment.BASE_URL + `vehicle/${id}/${user_id}`);
   }
 
   getcomments(id: number): Observable<any[]> {

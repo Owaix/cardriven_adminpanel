@@ -6,7 +6,7 @@
                     <div class="col-md-8">
                         <h4 class="card-title">Your Transactions</h4>
                     </div>
-                    <div class="col-md-4">
+                    <div style="display: none;"  class="col-md-4">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="" aria-label=""
                                 aria-describedby="basic-addon1">
@@ -21,20 +21,22 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Description</th>
-                                <th scope="col">Transaction Date</th>
-                                <th scope="col">Debit</th>
-                                <!-- <th scope="col">Credit</th>
-                                <th scope="col">Balance</th> -->
+                                <th colspan="2" scope="col">Transactions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor='let ts of arr'>
-                                <th scope="row">{{ts.description}}</th>                                
-                                <td>{{ts.create_date}}</td>
-                                <td>{{ts.debit}}</td>
-                                <!-- <td>{{ts.credit}}</td>
-                                <td>{{ts.balance}}</td> -->
+                                <td>
+                                    <div>
+                                        <span style="font-weight: 800;">{{ts.card}}</span>
+                                        <span style="padding-left: 15px;font-size: small;">{{ts.create_date}}</span>
+                                        <br>
+                                        <span style="font-style: italic;" [innerHtml]="ts.description"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span>{{ts.debit | currency:'USD'}}</span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

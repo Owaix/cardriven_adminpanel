@@ -15,7 +15,12 @@ export class PaymentComponent implements OnInit {
 
   @Input() id: number = 0;
   cardNumber: string = '';
+  msg = "";
   price: number = 0;
+  isNameEmpty = false;
+  isNumberEmpty = false;
+  dataLoaded: boolean = false;
+  isDisablebutton: boolean = false;
   CardDetails: CardDetails = new CardDetails();
 
   constructor(
@@ -31,17 +36,32 @@ export class PaymentComponent implements OnInit {
   }
 
   onSave() {
-
+    this.msg = '';
+    this.isNameEmpty = false;
+    this.isNumberEmpty = false;
+    if (this.CardDetails.Name == "") {
+      this.msg += 'Please enter Name</br>';
+      this.isNameEmpty = true;
+    }
+    if (this.CardDetails.Number == "") {
+      this.msg += 'Please enter Card #';
+      this.isNumberEmpty = true;
+    }
+    if (this.msg != "") {
+      //alert(msg);
+      return;
+    }
+    this.dataLoaded = true;
+    this.isDisablebutton = true;
     console.log(this.CardDetails);
-    //return;
 
     var cardDetails = {
       "CardDetails": {
-        "Name": "John Smith",
-        "Number": "4444333322221111",
+        "Name": this.CardDetails.Name,
+        "Number": this.CardDetails.Number,
         "ExpiryMonth": "12",
         "ExpiryYear": "25",
-        "CVN": "123"
+        "CVN": this.CardDetails.CVN
       }
     };
 
@@ -53,6 +73,7 @@ export class PaymentComponent implements OnInit {
 
     const encryptedCardDetails = this.encryptionService.encrypt(JSON.stringify(body));
     this.service.payment(encryptedCardDetails).subscribe((x) => {
+      this.dataLoaded = false;
       console.log(x.message);
       Swal.fire({
         title: "PAID",

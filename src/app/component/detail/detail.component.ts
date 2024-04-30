@@ -36,8 +36,8 @@ export class DetailComponent {
     this.startLoading();
     this.route.params.subscribe(params => {
       this.destinationId = params['id'];
-
-      this.service.getcardetail(this.destinationId).subscribe((x) => {
+      let id = localStorage.getItem('id');
+      this.service.getcardetail(this.destinationId, id).subscribe((x) => {
         console.log(x);
         for (let i = 0; i < x.img_list.length; i++) {
           this.slides.push({ url: x.img_list[i], title: "" })

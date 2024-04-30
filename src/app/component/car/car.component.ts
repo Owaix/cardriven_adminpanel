@@ -9,6 +9,7 @@ import { Editor, Toolbar, Validators } from 'ngx-editor';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-car',
@@ -25,6 +26,7 @@ export class CarComponent implements OnInit {
   moreinfo: boolean = true;
   categoryList: any[] = [];
   selectedFiles: CustomFile[] = [];
+  userDataSubscription: Subscription | undefined;
 
   isTypeEmpty: boolean = false;
   isPriceEmpty: boolean = false;
@@ -76,31 +78,24 @@ export class CarComponent implements OnInit {
   editor: Editor = new Editor();
   html = 'OWAIS';
 
+  //create a cronjob for delist all listed cars
+
   ngOnInit(): void {
     let id = localStorage.getItem('id');
-    this.carDataService.getinventory_level(id).subscribe((list) => {
-
-      list.forEach(x => {
-        var result = new Date(x.created_date);
-        result.setDate(result.getDate() + x.days);
-        if (new Date() < result) {
-          this.isAllow = true;
-        }
-      })
-
-      if (!this.isAllow) {
-        alert('You are not currently enroll the any plan.')
+    this.userDataSubscription = this.carDataService.getinventory_level(id).subscribe((list) => {
+      if (list.length == 0) {
+        alert('You are not currently enroll the any plan.');
         this.router.navigate(['/component/plans']);
       }
     });
 
     this.editor = new Editor();
-    this.carDataService.getMakes().subscribe((makes) => {
+    this.userDataSubscription = this.carDataService.getMakes().subscribe((makes) => {
       console.log(makes)
       this.makes = makes;
     });
 
-    this.userService.get_profile(id).subscribe(
+    this.userDataSubscription = this.userService.get_profile(id).subscribe(
       response => {
         let user = response.userData[0];
         this.state = user.state;
@@ -126,6 +121,9 @@ export class CarComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    if (this.userDataSubscription) {
+      this.userDataSubscription.unsubscribe();
+    }
     this.editor.destroy();
   }
 
@@ -237,6 +235,18 @@ export class CarComponent implements OnInit {
   }
 
   onSave(): void {
+
+    let id = localStorage.getItem('id');
+    this.carDataService.getinventory_level(id).subscribe((list) => {
+      if (list.length > 0) {
+        let obj = list[0];
+        if (obj.items == obj.toitems) {
+          alert('You are not currently enroll the any plan.');
+          return;
+        }
+      }
+    });
+
     let msg = "";
     this.isPriceEmpty = false;
     this.isTypeEmpty = false;
