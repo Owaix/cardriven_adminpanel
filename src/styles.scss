@@ -6,7 +6,7 @@ body {
 }
 
 .form-control:focus {
-  border-color: #009efb;
+  border-color: #000000;
 }
 
 label {
@@ -29,7 +29,17 @@ button {
 // }
 
 button {
-  background-color: #009efb;
+  background-color: #000000;
+}
+
+.btn-primary {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.btn-primary :hover {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
 }
 
 // .ng-select-searchable {

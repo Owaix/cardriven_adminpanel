@@ -20,12 +20,13 @@ import { NumberFormatDirective } from '../services/numberdirective';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PlansComponent } from './plans/plans.component';
-import { CreditCardDirective, MmYyDateDirective } from '../services/card-mask.directive'; // Import your pipe here
+import { CreditCardDirective, MmYyDateDirective } from '../services/card-mask.directive';
+import { EnquiryComponent } from './enquiry/enquiry.component'; // Import your pipe here
 
 @NgModule({
   declarations: [
     CreditCardDirective,MmYyDateDirective,
-    NumberFormatDirective, ProfilesComponent, CarComponent, ModalContentComponent, ListComponent, DetailComponent, SlidercomponentComponent, CommentmodalComponent, CommentsComponent, TransactionsComponent, PaymentComponent, PlansComponent
+    NumberFormatDirective, ProfilesComponent, CarComponent, ModalContentComponent, ListComponent, DetailComponent, SlidercomponentComponent, CommentmodalComponent, CommentsComponent, TransactionsComponent, PaymentComponent, PlansComponent, EnquiryComponent
   ],
   imports: [
     CommonModule,

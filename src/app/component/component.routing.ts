@@ -16,6 +16,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PlansComponent } from './plans/plans.component';
+import { EnquiryComponent } from './enquiry/enquiry.component';
 
 
 export const ComponentsRoutes: Routes = [
@@ -85,6 +86,10 @@ export const ComponentsRoutes: Routes = [
 			{
 				path: 'plans',
 				component: PlansComponent
+			}
+			,{
+				path: 'enquiry',
+				component: EnquiryComponent
 			}
 		]
 	}
