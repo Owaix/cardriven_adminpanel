@@ -102,7 +102,20 @@ export class CarService {
     return this.http.get<any>(environment.BASE_URL + `ddl/plans/` + id);
   }
 
+  getenquiry(): Observable<any[]> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    return this.http.get<any[]>(environment.BASE_URL + `chat/chatlist/e`, { headers });
+  }
+
+  getenquirybyid(id: number): Observable<any[]> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    return this.http.get<any[]>(environment.BASE_URL + `chat/enquiry/` + id, { headers });
+  }
+
   private getToken(): string {
     return localStorage.getItem('authToken') || "";
   }
+
 }
