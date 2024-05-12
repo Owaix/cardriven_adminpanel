@@ -21,26 +21,48 @@ export class EnquiryComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getenquiry().subscribe((x) => {
-      x.forEach(x => {
-        x.last_message_content = x.last_message_content.replace('"', '').substring(0, 20) + ' ...';
+      x.forEach(v => {
+        v.time = this.timeAgo(v.create_date)
       })
       console.log(x);
       this.list = x;
     });
-  }
 
-  messages(user_id: number): void {
-    this.service.getenquirybyid(user_id).subscribe((x) => {
-      this.make = x[0].make;
-      this.model = x[0].model;
-      this.url = x[0].url;
-      this.msg = x[0].msg;
-      this.vehicle_id = x[0].vehicle_id;
+    this.service.updateread().subscribe((x) => {
     });
+
   }
 
   redirct(id: string) {
     this.route.navigate(['/component/cardetail/' + id]);
+  }
+
+  timeAgo(date: string): string {
+    const currentDate = new Date();
+    const inputDate = new Date(date);
+
+    const timeDifferenceInSeconds = Math.floor((currentDate.getTime() - inputDate.getTime()) / 1000);
+
+    const secondsInMinute = 60;
+    const secondsInHour = 3600;
+    const secondsInDay = 86400;
+    const secondsInMonth = 2592000;
+
+    if (timeDifferenceInSeconds < secondsInMinute) {
+      return `${timeDifferenceInSeconds} seconds ago`;
+    } else if (timeDifferenceInSeconds < secondsInHour) {
+      const minutes = Math.floor(timeDifferenceInSeconds / secondsInMinute);
+      return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+    } else if (timeDifferenceInSeconds < secondsInDay) {
+      const hours = Math.floor(timeDifferenceInSeconds / secondsInHour);
+      return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+    } else if (timeDifferenceInSeconds < secondsInMonth) {
+      const days = Math.floor(timeDifferenceInSeconds / secondsInDay);
+      return `${days} ${days === 1 ? 'day' : 'days'} ago`;
+    } else {
+      const months = Math.floor(timeDifferenceInSeconds / secondsInMonth);
+      return `${months} ${months === 1 ? 'month' : 'months'} ago`;
+    }
   }
 
 }

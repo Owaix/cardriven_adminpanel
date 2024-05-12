@@ -25,7 +25,9 @@ export class CarService {
   getYears(model: number): Observable<Ddl[]> {
     return this.http.get<Ddl[]>(`${this.apiUrl}/year/${model}`);
   }
-
+  getsubModels(model: number): Observable<Ddl[]> {
+    return this.http.get<Ddl[]>(`${this.apiUrl}/Submodels/${model}`);
+  }
   getCategory(model: any): Observable<Ddl[]> {
     return this.http.post<Ddl[]>(`${this.apiUrl}/category`, model);
   }
@@ -105,7 +107,13 @@ export class CarService {
   getenquiry(): Observable<any[]> {
     const token = this.getToken();
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-    return this.http.get<any[]>(environment.BASE_URL + `chat/chatlist/e`, { headers });
+    return this.http.get<any[]>(environment.BASE_URL + `chat/getenq`, { headers });
+  }
+
+  updateread(): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    return this.http.get<any>(environment.BASE_URL + `chat/updateread`, { headers });
   }
 
   getenquirybyid(id: number): Observable<any[]> {

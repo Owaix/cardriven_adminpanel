@@ -22,6 +22,7 @@ export class CarComponent implements OnInit {
   models: Ddl[] = [];
   years: Ddl[] = [];
   types: Ddl[] = [];
+  submodels: Ddl[] = [];
   variantList: any[] = [];
   moreinfo: boolean = true;
   categoryList: any[] = [];
@@ -30,9 +31,10 @@ export class CarComponent implements OnInit {
 
   isTypeEmpty: boolean = false;
   isPriceEmpty: boolean = false;
-
+  isSubModel: boolean = false;
   selectedMake: number = 0;
   selectedModel: number = 0;
+  selectedSubModel: number = 0;
   selectedYear: number = 0;
   selectedstate: string = '';
 
@@ -131,13 +133,31 @@ export class CarComponent implements OnInit {
     this.selectedMake = obj.title;
     this.carDataService.getModels(this.car.makeID).subscribe((models) => {
       this.models = models;
+      console.log(this.models);
       this.selectedModel = 0; // Reset selected model when make changes
     });
   }
 
   onModelChange(obj: any): void {
-    this.selectedModel = obj.title;
-    this.carDataService.getYears(this.car.modelID).subscribe((years) => {
+    if (obj.submodel > 0) {
+      this.isSubModel = true;
+      this.selectedModel = obj.title;
+      this.carDataService.getsubModels(this.car.modelID).subscribe((sub) => {
+        this.submodels = sub;
+      });
+    } else {
+      this.isSubModel = false;
+      this.selectedModel = obj.title;
+      this.carDataService.getYears(this.car.modelID).subscribe((years) => {
+        this.years = years.sort((a, b) => (a.title < b.title ? 1 : -1));
+      });
+    }
+  }
+
+  onSubModelChange(obj: any): void {
+    console.log(this.car.SubmodelID);
+    this.selectedSubModel = obj.title;
+    this.carDataService.getYears(this.car.SubmodelID).subscribe((years) => {
       this.years = years.sort((a, b) => (a.title < b.title ? 1 : -1));
     });
   }
@@ -147,7 +167,7 @@ export class CarComponent implements OnInit {
 
     let category = {
       "make": this.selectedMake,
-      "model": this.selectedModel,
+      "model": this.selectedSubModel == 0 ? this.selectedModel : this.selectedSubModel,
       "year": this.selectedYear
     }
 
@@ -163,6 +183,7 @@ export class CarComponent implements OnInit {
 
   onVarianChange(link: any): void {
     link = link.id;
+    console.log(link);
     this.carDataService.getdetail(link).subscribe((cat) => {
       this.moreinfo = true;
       console.log(this.moreinfo);

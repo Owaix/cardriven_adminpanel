@@ -60,6 +60,7 @@ export class Car {
     isNego: boolean = false;
     makeID: number = 0;
     modelID: number = 0;
+    SubmodelID: number = 0;
     variant: string = '';
     year: number = 0;
     description: string = '';
