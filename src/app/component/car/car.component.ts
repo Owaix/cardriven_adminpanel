@@ -134,7 +134,7 @@ export class CarComponent implements OnInit {
     this.carDataService.getModels(this.car.makeID).subscribe((models) => {
       this.models = models;
       console.log(this.models);
-      this.selectedModel = 0; // Reset selected model when make changes
+      this.car.modelID = 0;
     });
   }
 
@@ -144,12 +144,14 @@ export class CarComponent implements OnInit {
       this.selectedModel = obj.title;
       this.carDataService.getsubModels(this.car.modelID).subscribe((sub) => {
         this.submodels = sub;
+        this.car.SubmodelID = 0;
       });
     } else {
       this.isSubModel = false;
       this.selectedModel = obj.title;
       this.carDataService.getYears(this.car.modelID).subscribe((years) => {
         this.years = years.sort((a, b) => (a.title < b.title ? 1 : -1));
+        this.car.year = 0;
       });
     }
   }
@@ -172,13 +174,15 @@ export class CarComponent implements OnInit {
     }
 
     this.carDataService.getCategory(category).subscribe((cat) => {
+      console.log("cat");
+      console.log(cat);
       this.categoryList = cat;
     });
   }
 
   onTypeChange(obj: any): void {
     var variant = this.categoryList.find(x => x.title == obj.title);
-    this.variantList = this.removeDuplicates(variant.list, 'specs');
+    this.variantList = this.removeDuplicates(variant.list, 'variant');
   }
 
   onVarianChange(link: any): void {

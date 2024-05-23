@@ -26,15 +26,14 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: []
   },
-  {
-    path: '/component/comments',
-    title: 'Comments',
-    icon: 'bi bi-patch-check',
-    class: '',
-    extralink: false,
-    submenu: []
-  }
-  ,
+  // {
+  //   path: '/component/comments',
+  //   title: 'Comments',
+  //   icon: 'bi bi-patch-check',
+  //   class: '',
+  //   extralink: false,
+  //   submenu: []
+  // }
   {
     path: '/component/transactions',
     title: 'Transactions',

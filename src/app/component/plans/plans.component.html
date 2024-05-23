@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="form-row">
             <div class="form-group col-md-12">
-                <div class="alert alert-success" role="alert">
+                <div *ngIf="hasPlan" class="alert alert-success" role="alert">
                     Current Plan <a href="javascript:void(0)" class="alert-link">{{plan}}</a>. {{remDate}} Days Left.
                 </div>
                 <br>

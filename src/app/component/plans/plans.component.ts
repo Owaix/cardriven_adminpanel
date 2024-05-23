@@ -13,6 +13,7 @@ export class PlansComponent implements OnInit {
   plans: any[] = [];
   remDate : number = 0;
   plan : string = '';
+  hasPlan = false;
   constructor(private carDataService: CarService,
     private modalService: NgbModal
   ) { }
@@ -23,8 +24,9 @@ export class PlansComponent implements OnInit {
       this.plans = plans;
     })
 
-    this.carDataService.getinventory_level(id).subscribe((list) => {
+    this.carDataService.getinventory_level(id).subscribe((list) => {      
       if (list.length > 0) {
+        this.hasPlan = true
         this.plan = list[0].plan;
         this.remDate = this.calculateDiff(list[0].expiry_date);
       }

@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="list-group">
                     <div *ngFor="let tab of list; let i = index">
-                        <a style="margin-bottom: 10px;" href="/component/cardetail/{{tab.id}}" [ngClass]="tab.isread == true ? 'list-group-item list-group-item-action flex-column align-items-start' 
+                        <a style="margin-bottom: 10px;" href="/component/cardetail/{{tab.vehicle_id}}" [ngClass]="tab.isread == true ? 'list-group-item list-group-item-action flex-column align-items-start' 
                             : 'list-group-item list-group-item-action flex-column align-items-start active'">
                             <img style="position: absolute;" class="rounded-circle shadow-1-strong me-3"
                                 src="{{tab.url}}" alt="avatar" width="60" height="60" />
@@ -15,7 +15,11 @@
                             </div>
                             <div style="padding-left: 70px;">
                                 <p class="mb-1">{{tab.msg}}</p>
-                                <small>Donec id elit non mi porta.</small>
+                                <div style="font-family: 'Rubik';font-style: italic;font-weight: 700;">
+                                    <span>{{tab.email}}</span>
+                                    <br>
+                                    <span>{{tab.phone_no}}</span>
+                                </div>
                             </div>
                         </a>
                     </div>

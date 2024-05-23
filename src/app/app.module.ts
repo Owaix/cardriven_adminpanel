@@ -6,7 +6,7 @@ import {
 } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +21,7 @@ import { Approutes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SpinnerComponent } from './shared/spinner.component';
 import { ReadMorePipe } from './services/readmorepipe';
+import { AuthInterceptor } from './services/auth-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,8 +44,11 @@ import { ReadMorePipe } from './services/readmorepipe';
   ],
   providers: [
     {
-      provide: LocationStrategy,
-      useClass: PathLocationStrategy
+      // provide: LocationStrategy,
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+      // useClass: PathLocationStrategy
     },
   ],
   bootstrap: [AppComponent]
