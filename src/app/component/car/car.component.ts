@@ -84,12 +84,12 @@ export class CarComponent implements OnInit {
 
   ngOnInit(): void {
     let id = localStorage.getItem('id');
-    this.userDataSubscription = this.carDataService.getinventory_level(id).subscribe((list) => {
-      if (list.length == 0) {
-        alert('You are not currently enroll the any plan.');
-        this.router.navigate(['/component/plans']);
-      }
-    });
+    // this.userDataSubscription = this.carDataService.getinventory_level(id).subscribe((list) => {
+    //   if (list.length == 0) {
+    //     alert('You are not currently enroll the any plan.');
+    //     this.router.navigate(['/component/plans']);
+    //   }
+    // });
 
     this.editor = new Editor();
     this.userDataSubscription = this.carDataService.getMakes().subscribe((makes) => {
@@ -262,15 +262,15 @@ export class CarComponent implements OnInit {
   onSave(): void {
 
     let id = localStorage.getItem('id');
-    this.carDataService.getinventory_level(id).subscribe((list) => {
-      if (list.length > 0) {
-        let obj = list[0];
-        if (obj.items == obj.toitems) {
-          alert('You are not currently enroll the any plan.');
-          return;
-        }
-      }
-    });
+    // this.carDataService.getinventory_level(id).subscribe((list) => {
+    //   if (list.length > 0) {
+    //     let obj = list[0];
+    //     if (obj.items == obj.toitems) {
+    //       alert('You are not currently enroll the any plan.');
+    //       return;
+    //     }
+    //   }
+    // });
 
     let msg = "";
     this.isPriceEmpty = false;
@@ -300,7 +300,7 @@ export class CarComponent implements OnInit {
       "year": this.car.year,
       "type": this.car.type,
       "negotiable": this.car.isNego,
-      "price": this.car.price,
+      "price": this.car.price.replace(",", ""),
       "mileage": 1200,
       "transmission": 1022,
       "status": this.car.status,
@@ -310,7 +310,8 @@ export class CarComponent implements OnInit {
       "city": "larkano",
       "parked_near": "dffsd fffsdf",
       "identifier": this.car.identifier,
-      "Driveaway": this.car.Driveaway
+      "Driveaway": this.car.Driveaway,
+      "subModelID": this.car.SubmodelID
     }
     console.log(model);
     this.carDataService.savecar(model).subscribe((years) => {

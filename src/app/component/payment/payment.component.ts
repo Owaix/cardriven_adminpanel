@@ -67,7 +67,7 @@ export class PaymentComponent implements OnInit {
 
     let body = {
       cardDetails: cardDetails,
-      amount: 100,
+      amount: this.price,
       level: this.id
     }
 
