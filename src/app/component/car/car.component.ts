@@ -84,12 +84,12 @@ export class CarComponent implements OnInit {
 
   ngOnInit(): void {
     let id = localStorage.getItem('id');
-    // this.userDataSubscription = this.carDataService.getinventory_level(id).subscribe((list) => {
-    //   if (list.length == 0) {
-    //     alert('You are not currently enroll the any plan.');
-    //     this.router.navigate(['/component/plans']);
-    //   }
-    // });
+    this.userDataSubscription = this.carDataService.getinventory_level(id).subscribe((list) => {
+      if (list.length == 0) {
+        alert('You are not currently enroll the any plan.');
+        this.router.navigate(['/component/plans']);
+      }
+    });
 
     this.editor = new Editor();
     this.userDataSubscription = this.carDataService.getMakes().subscribe((makes) => {
@@ -262,15 +262,16 @@ export class CarComponent implements OnInit {
   onSave(): void {
 
     let id = localStorage.getItem('id');
-    // this.carDataService.getinventory_level(id).subscribe((list) => {
-    //   if (list.length > 0) {
-    //     let obj = list[0];
-    //     if (obj.items == obj.toitems) {
-    //       alert('You are not currently enroll the any plan.');
-    //       return;
-    //     }
-    //   }
-    // });
+    this.carDataService.getinventory_level(id).subscribe((list) => {
+      if (list.length > 0) {
+        console.log(list);
+        let obj = list[0];
+        if (obj.items == obj.toitems) {
+          alert('You are not currently enroll the any plan.');
+          return;
+        }
+      }
+    });
 
     let msg = "";
     this.isPriceEmpty = false;

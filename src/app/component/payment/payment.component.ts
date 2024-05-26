@@ -85,4 +85,30 @@ export class PaymentComponent implements OnInit {
     });
   }
 
+  onKeyPress(event: KeyboardEvent): void {
+    const inputChar = String.fromCharCode(event.charCode);
+    const currentInput = this.CardDetails.Expiry;
+
+    // Allow only numbers
+    if (!/[0-9]/.test(inputChar)) {
+      event.preventDefault();
+      return;
+    }
+
+    // Allow backspace and delete keys
+    if (event.keyCode === 8 || event.keyCode === 46) {
+      return;
+    }
+
+    // Add slash after entering two digits for month
+    if (currentInput.length === 2 && !currentInput.includes('/')) {
+      this.CardDetails.Expiry += '/';
+    }
+
+    // Prevent input if length exceeds 5 characters (MM/YY)
+    if (currentInput.length >= 5) {
+      event.preventDefault();
+    }
+  }
+
 }

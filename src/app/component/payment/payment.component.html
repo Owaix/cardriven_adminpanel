@@ -39,15 +39,15 @@
                                     <div class="form-group">
                                         <div class="col-xs-6 col-lg-6 pl-ziro">
                                             <input [(ngModel)]="CardDetails.Expiry" name="Expiry" autocomplete="off"
-                                                type="text" class="form-control" id="expityMonth" placeholder="MM/YY"
+                                                type="text"  (keypress)="onKeyPress($event)" class="form-control" id="expityMonth" placeholder="MM/YY"
                                                 required />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-5 col-md-5 pull-right">
                                     <div class="form-group">
-                                        <input [(ngModel)]="CardDetails.CVN" name="CVN" autocomplete="off"
-                                            type="password" class="form-control" id="cvCode" placeholder="CVV"
+                                        <input [maxLength]="3" minlength="3"  [(ngModel)]="CardDetails.CVN" name="CVN" autocomplete="off"
+                                            type="text" class="form-control" id="cvCode" placeholder="CVV"
                                             required />
                                     </div>
                                 </div>
