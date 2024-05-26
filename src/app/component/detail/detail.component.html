@@ -36,7 +36,15 @@
                 <table class="table">
                     <tr>
                         <td>Price (AUD)</td>
-                        <td style="font-weight: bold;" >{{car.price | currency:'USD'}}</td>
+                        <td style="font-weight: bold;">{{car.price | currency:'USD'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Manufactured Year</td>
+                        <td>{{ car.year }}</td>
+                    </tr>
+                    <tr *ngIf="car.subModel">
+                        <td>Sub-Model</td>
+                        <td>{{car.subModel}}</td>
                     </tr>
                     <tr>
                         <td>Milage</td>
@@ -49,10 +57,6 @@
                     <tr>
                         <td>Body Type</td>
                         <td>{{car.category}}</td>
-                    </tr>
-                    <tr>
-                        <td>Manufactured Year</td>
-                        <td>{{ car.year }}</td>
                     </tr>
                     <tr>
                         <td>Transmission</td>

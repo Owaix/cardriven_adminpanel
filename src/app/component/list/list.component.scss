@@ -4,10 +4,9 @@ th {
 }
 
 table tr:hover td {
-    background-color: beige;
+    background-color: rgb(234, 234, 234);
     cursor: pointer;
 }
-
 .Approved {
     background-color: green;
     border-radius: 39px;
@@ -16,7 +15,6 @@ table tr:hover td {
     font-weight: 700;
     font-size: 12px;
 }
-
 .Pending {
     background-color: red;
     border-radius: 39px;
@@ -25,7 +23,6 @@ table tr:hover td {
     font-weight: 700;
     font-size: 12px;
 }
-
 .Pay-Failed,
 .Reject {
     background-color: grey;
