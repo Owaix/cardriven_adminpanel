@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../../services/users.service';
+import { CarService } from 'src/app/services/car.service';
 
 declare var $: any;
 
@@ -13,14 +14,15 @@ declare var $: any;
   templateUrl: './navigation.component.html'
 })
 export class NavigationComponent implements AfterViewInit, OnInit {
-
+  count: number = 0;
   name: string = "";
   profile_img: string = "assets/images/users/user1.jpg";
   @Output() toggleSidebar = new EventEmitter<void>();
 
   public showSearch = false;
 
-  constructor(private modalService: NgbModal, private router: Router, private cookieService: CookieService, private userService: UserService) {
+  constructor(private carDataService: CarService,
+    private modalService: NgbModal, private router: Router, private cookieService: CookieService, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -39,6 +41,10 @@ export class NavigationComponent implements AfterViewInit, OnInit {
         alert(error.error.message);
       }
     );
+    this.carDataService.countenquiries().subscribe(x => {
+      this.count = x[0].counts;
+    })
+
   }
 
   Logout() {

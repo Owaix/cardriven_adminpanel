@@ -109,7 +109,11 @@ export class CarService {
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.get<any[]>(environment.BASE_URL + `chat/getenq`, { headers });
   }
-
+  countenquiries(): Observable<any> {
+    const token = this.getToken();
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    return this.http.get<any>(environment.BASE_URL + `chat/countenquiries`, { headers });
+  }
   updateread(): Observable<any> {
     const token = this.getToken();
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });

@@ -8,8 +8,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="input-group mb-3">
-                            <input (keyup)="onKeyPress($event)" type="text" class="form-control" placeholder="" aria-label=""
-                                aria-describedby="basic-addon1">
+                            <input (keyup)="onKeyPress($event)" type="text" class="form-control" placeholder=""
+                                aria-label="" aria-describedby="basic-addon1">
                             <div class="input-group-prepend">
                                 <button style="background-color: #000000;" class="btn btn-outline-secondary"
                                     type="button">Search</button>
@@ -32,7 +32,7 @@
                             <tr (click)="detail(ts.id)" *ngFor='let ts of car'>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img [src]=ts.defaultImg alt="user" width="45" class="">
+                                        <img [src]=ts.imglist[0] alt="user" width="45" class="">
                                         <div class="ms-3">
                                             <h5 class="mb-0 font-medium">{{ts.make}} {{ts.model}}</h5>
                                             <span class="text-muted">{{ts.years}}</span>

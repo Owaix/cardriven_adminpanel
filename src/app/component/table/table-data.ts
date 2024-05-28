@@ -46,6 +46,7 @@ export class CarsModel {
     created_date: string = "";
     statuslogo: string = "";
     identifier: string = "";
+    imglist: string[] = [];
 }
 
 export const TopSelling: Product[] = [
